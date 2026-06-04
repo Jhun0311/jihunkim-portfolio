@@ -614,7 +614,7 @@ body {
 .project-card {
     background: rgba(0, 0, 0, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 16px;
+    border-radius: 7px;
     overflow: hidden;
     color: #fff;
     font-family: 'Nanum Gothic Coding', 'Courier New', monospace;
@@ -626,18 +626,36 @@ body {
 }
 .project-card .card-image {
     width: 100%;
-    aspect-ratio: 16 / 10;     /* 더마렌즈 사진 비율 (1440 x 900) */
+    aspect-ratio: 16 / 10;     /* 기본 : 모든 카드 이미지 영역 동일 크기 */
     overflow: hidden;
-    background: #111;
+    background: #fff;
 }
 .project-card .card-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;         /* 모든 사진을 16:10 박스에 꽉 채워 표시 (더마렌즈와 동일한 모양) */
+    object-fit: cover;         /* 16:10 박스에 꽉 채워 표시 */
     object-position: center;
     display: block;
 }
-.project-card .card-body { padding: 16px 20px 18px; }
+
+/* 2023 연도 & 특정 항목(2026-3) : 사진 원본 비율 그대로 (패딩 없음) */
+.project-grid[data-year="2023"] .project-card .card-image,
+.project-card .card-image:has(img[src="2026-3.png"]) {
+    aspect-ratio: auto;
+}
+.project-grid[data-year="2023"] .project-card .card-image img,
+.project-card .card-image img[src="2026-3.png"] {
+    height: auto;
+    object-fit: unset;
+}
+.project-card .card-body {
+    padding: 14px 20px;
+    min-height: 165px;          /* card-body 영역 모든 카드 동일 높이 */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+.project-card .card-stack { margin-top: auto; }  /* 태그가 있으면 하단 정렬 */
 .project-card .card-title-row {
     display: flex;
     justify-content: space-between;

@@ -73,17 +73,17 @@ const achievements = {
         },
         {
             src: '2026-2.png',
-            title: '비마학습동아리 프론트 개발',
+            title: 'JBMATE',
             status: '진행완료',
-            desc: '중부대학교 교수학습지원센터 비마학습동아리',
+            desc: '중부대학교 교수학습지원센터 비마학습동아리<br>"대학생 개인 관리 웹사이트"',
             role: '프론트엔드',
             stack: ['HTML', 'CSS', 'JavaScript', 'React']
         },
         {
             src: '2026-3.png',
-            title: '더마렌즈',
+            title: 'DermaLens',
             status: '진행완료',
-            desc: '중부대학교 교수학습지원센터 창업동아리',
+            desc: '중부대학교 교수학습지원센터 창업동아리<br>"피부 타입 맞춤형 화장품 추천 플랫폼"',
             role: '프론트엔드, 웹페이지 제작',
             stack: ['HTML', 'CSS', 'JavaScript']
         }
@@ -146,7 +146,7 @@ function showYear(year) {
         `;
     }).join('');
 
-    yearDetail.innerHTML = `<div class="project-grid">${cards}</div>`;
+    yearDetail.innerHTML = `<div class="project-grid" data-year="${year}">${cards}</div>`;
     yearDetail.hidden = false;
 }
 
