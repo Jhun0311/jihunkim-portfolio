@@ -76,7 +76,7 @@ const achievements = {
             title: 'JBMATE',
             status: '진행완료',
             desc: '중부대학교 교수학습지원센터 비마학습동아리<br>"대학생 개인 관리 웹사이트"',
-            role: '프론트엔드: 메인페이지제작 및 네비게이션 연결',
+            role: '프론트엔드: 메인 페이지 제작 및 네비게이션 연결',
             stack: ['HTML', 'CSS', 'JavaScript', 'React']
         },
         {
