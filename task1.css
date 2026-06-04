@@ -41,8 +41,19 @@ body {
     padding: 14px 12px 32px;
     display: flex;
     flex-direction: column;
-    /* 숲 배경 */
-    background: url('background.png') center / cover no-repeat fixed;
+    /* 숲 배경 - 데스크탑: fixed로 패럴랙스 / 모바일: scroll로 정상 작동 */
+    background-image: url('background.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* 모바일/태블릿에서 background-attachment: fixed는 iOS Safari 등에서 깨짐 → scroll로 전환 */
+@media (max-width: 1024px), (hover: none) {
+    .panel {
+        background-attachment: scroll;
+    }
 }
 
 /* 상단 타이틀 헤더 : 가로 전체를 채우는 흰색 밴드 (위에 배경 조금 보이게) */
