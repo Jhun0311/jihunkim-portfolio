@@ -84,7 +84,7 @@ const achievements = {
             title: 'DermaLens',
             status: '진행완료',
             desc: '중부대학교 교수학습지원센터 창업동아리<br>"피부 타입 맞춤형 화장품 추천 플랫폼"',
-            role: '프론트엔드, 웹페이지 제작',
+            role: '프론트엔드: 웹페이지 제작',
             stack: ['HTML', 'CSS', 'JavaScript']
         }
     ]
