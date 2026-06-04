@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JiHun's Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- 외부 CSS 파일 연결 -->
+    <link rel="stylesheet" href="task1.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         메인 패널
+    ========================== -->
+    <main class="panel">
+
+        <!-- 상단 내비게이션 -->
+        <nav class="topnav">
+            <div class="logo" id="logoBtn" role="button" tabindex="0">JihunKim</div>
+            <ul class="nav-links">
+                <li data-view="about">About</li>
+                <li data-view="contact">Contact</li>
+                <li data-view="resume">Resume</li>
+            </ul>
+        </nav>
+
+        <!-- 상단 : 타이틀 헤더 -->
+        <header class="site-header">
+            <h1>JihunKim's Portfolio</h1>
+            <p>눈에 보이는 것과 안 보이는 것까지, 프로트엔드 및 백엔드와 피지컬 AI를 다루는 풀스택 개발자 김지훈입니다.</p>
+        </header>
+
+        <!-- 본문 : LP + 연도 + 상세 -->
+        <div class="content">
+
+            <!-- 메뉴(Work/About/Contact) 클릭 시 표시되는 패널 -->
+            <section class="info-panel" id="infoPanel" hidden></section>
+
+            <!-- LP판 위 제목 -->
+            <h2 class="stage-title" id="stageTitle">Projects</h2>
+
+            <!-- LP판 -->
+            <section class="stage">
+                <div class="turntable" id="turntable">
+                    <div class="vinyl" id="vinyl">
+                        <div class="vinyl-shine"></div>
+                        <div class="vinyl-label"></div>
+                        <div class="vinyl-hole"></div>
+                    </div>
+
+                    <!-- 톤암 (바늘 팔) -->
+                    <div class="tonearm" id="tonearm">
+                        <div class="tonearm-base"></div>
+                        <div class="tonearm-rod"></div>
+                        <div class="tonearm-head"></div>
+                    </div>
+
+                    <!-- 연도 라벨 (LP 원형 왼쪽 호를 따라 위→아래) -->
+                    <button class="year year-2023" data-year="2023">2023</button>
+                    <button class="year year-2024" data-year="2024">2024</button>
+                    <button class="year year-2025" data-year="2025">2025</button>
+                    <button class="year year-2026" data-year="2026">2026</button>
+                </div>
+            </section>
+
+            <!-- 선택한 연도의 프로젝트/업적 상세 (클릭 시 표시) -->
+            <section class="year-detail" id="yearDetail" hidden></section>
+
+        </div><!-- /.content -->
+
+    </main>
+
+    <!-- 하단 푸터 (panel 외부로 빼서 화면 좌우 끝까지 자연스럽게 확장) -->
+    <footer class="site-footer">
+        <div class="footer-left">
+            <p class="footer-name">JihunKim</p>
+            <p class="footer-copy">&copy; 2026 JiHun Kim. All rights reserved.</p>
+        </div>
+        <div class="footer-right">
+            <a href="mailto:kjh031103@naver.com" class="footer-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7L12 13 2 7"/></svg>
+                Mail
+            </a>
+            <a href="https://github.com/Jhun0311" target="_blank" rel="noopener" class="footer-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.04c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.23 1.84 1.23 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.66-.31-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.23-3.22-.12-.3-.54-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 0z"/></svg>
+                GitHub
+            </a>
+        </div>
+    </footer>
+
+    <!-- 외부 JS 파일 연결 -->
+    <script src="task1.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1100 @@
+/* =========================
+   색상 변수 / 기본 설정
+========================= */
+:root {
+    --bg:        #d8d9da;   /* 바깥 배경 (연회색) */
+    --panel:     #ffffff;   /* 흰색 패널 */
+    --blue:      #9cc0d6;   /* 메인 파스텔 블루 */
+    --blue-deep: #6f9bb3;   /* 진한 블루 (텍스트) */
+    --blue-soft: #c9dee9;   /* 옅은 블루 */
+    --card:      #eef1f3;   /* 카드 배경 */
+    --muted:     #9fb4bf;   /* 흐린 글자 */
+    --ink:       #5d7d8c;   /* 본문 글자 */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body { height: 100%; }
+html { overflow-x: hidden; }
+body {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;          /* 모바일 브라우저 chrome까지 고려한 가변 뷰포트 높이 */
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+    color: var(--ink);
+    background: #000;            /* panel 바깥쪽이 보일 가능성을 없애기 위한 안전망 */
+    overflow-x: hidden;
+}
+
+/* =========================
+   메인 패널
+========================= */
+.panel {
+    position: relative;
+    width: 100%;
+    flex: 1 0 auto;              /* body flex 컬럼에서 항상 남는 공간을 채움 → panel이 footer를 viewport 바닥으로 밀어냄 */
+    /* 모든 페이지에서 일관된 좌우 패딩 → JihunKim 위치 동일 */
+    padding: 14px 12px 32px;
+    display: flex;
+    flex-direction: column;
+    /* 숲 배경 */
+    background: url('background.png') center / cover no-repeat fixed;
+}
+
+/* 상단 타이틀 헤더 : 가로 전체를 채우는 흰색 밴드 (위에 배경 조금 보이게) */
+.site-header {
+    text-align: left;
+    /* 반투명 흰색 : 뒤 배경이 살짝 비침 */
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    /* 좌우는 패널 패딩 상쇄해 가장자리까지 채우고, 위쪽은 배경이 보이도록 여백 */
+    margin: 40px -12px 0;
+    padding: 40px 40px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+}
+/* About/Contact/Resume 페이지에서도 동일한 좌측 정렬 */
+.site-header.view-active {
+    padding: 36px 40px;
+}
+.site-header h1 {
+    margin: 0;
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: clamp(26px, 4vw, 40px);
+    color: #222;
+    letter-spacing: 0.5px;
+}
+.site-header p {
+    margin: 14px 0 0;
+    font-size: 18px;
+    color: #333;
+    letter-spacing: 0.2px;
+}
+
+/* 본문 : LP + 연도 + 상세 (세로 배치) */
+.content {
+    flex: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding-top: 24px;
+}
+
+/* =========================
+   상단 내비게이션
+========================= */
+.topnav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* 패널 패딩 상쇄해서 구분선을 화면 전체 폭으로 확장 (모든 페이지 동일) */
+    margin-left: -12px;
+    margin-right: -12px;
+    /* About 콘텐츠 시작 위치(28px = panel 12 + about 16)와 동일 */
+    padding: 0 28px 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+.topnav .logo {
+    cursor: pointer;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    padding: 4px 2px;
+    transition: opacity 0.2s ease;
+    user-select: none;
+}
+.topnav .logo:hover { opacity: 0.7; }
+.nav-links {
+    display: flex;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.nav-links li {
+    cursor: pointer;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    padding: 4px 2px;
+    transition: opacity 0.2s ease;
+}
+.nav-links li:hover { opacity: 0.7; }
+.nav-links li.active { text-decoration: underline; }
+
+/* =========================
+   Resume PDF 뷰어 (포트폴리오 톤에 맞춘 색상)
+========================= */
+.resume-viewer {
+    width: 100%;
+    max-width: 1200px;
+    margin: 24px auto;
+    background: rgba(0, 0, 0, 0.85);          /* 푸터와 동일한 톤 */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    font-family: 'Nanum Gothic Coding', 'Courier New', monospace;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+.resume-viewer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+.resume-viewer-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+.resume-viewer-title .chevron {
+    color: #6ee7b7;                            /* About 배지와 동일한 민트 */
+    font-weight: 700;
+    font-size: 15px;                           /* 파일명과 동일한 크기 */
+}
+.resume-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    color: #93c5fd;                            /* About 섹션 제목과 동일 블루 */
+    background: rgba(147, 197, 253, 0.08);
+    border: 1px solid rgba(147, 197, 253, 0.55);
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+.resume-download:hover {
+    background: rgba(147, 197, 253, 0.2);
+    transform: translateY(-1px);
+}
+.resume-preview {
+    display: block;
+    width: 100%;
+    height: 78vh;
+    border: none;
+    background: #fff;                          /* PDF 내용 가독성 */
+}
+.resume-fallback {
+    padding: 24px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+    text-align: center;
+}
+.resume-fallback a {
+    color: #93c5fd;
+    text-decoration: underline;
+    font-weight: 700;
+}
+
+/* =========================
+   About 뷰 : 카드 없이 배경화면 위에 텍스트만 표시
+========================= */
+/* About 뷰 : 카드 없음, 숲 배경 위에 흰 글씨 + 사진과 동일한 구도 */
+.about-view {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0;
+    padding: 20px 16px 32px;
+    text-align: left;
+    color: #fff;
+    font-family: 'Nanum Gothic Coding', 'Courier New', monospace;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.75);
+}
+/* About/Contact가 표시될 때 상위 컨테이너의 가운데 정렬을 좌측 정렬로 전환 */
+.content:has(.about-view),
+.content:has(.contact-view) {
+    align-items: flex-start;
+    max-width: 100%;
+}
+.info-panel:has(.about-view),
+.info-panel:has(.contact-view) {
+    margin: 0;
+    max-width: 100%;
+    text-align: left;
+    padding: 0;
+}
+
+/* =========================
+   Contact 뷰
+========================= */
+.contact-view {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0;
+    padding: 56px 16px 32px;
+    text-align: left;
+    color: #fff;
+    font-family: 'Nanum Gothic Coding', 'Courier New', monospace;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.75);
+}
+.contact-view, .contact-view * {
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.75);
+}
+.contact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+}
+.contact-item:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.45);
+}
+.contact-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #93c5fd !important;
+    font-size: 15px;
+    font-weight: 700;
+}
+.contact-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+.contact-value {
+    font-size: 15px;
+    text-decoration: none;
+    color: #fff !important;
+    transition: opacity 0.15s ease;
+}
+.contact-value:hover { opacity: 0.75; text-decoration: underline; }
+
+@media (max-width: 640px) {
+    .contact-view { padding: 14px 16px 28px; }
+    .contact-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 20px 4px;
+    }
+    .contact-label { min-width: 0; font-size: 13px; }
+    .contact-value { font-size: 13px; word-break: break-all; }
+}
+.about-view, .about-view * {
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.75);
+}
+
+/* 프로필 영역 */
+.about-whoami {
+    display: flex;
+    gap: 48px;
+    align-items: stretch;          /* 사진이 옆 텍스트 영역(AI 태그까지) 높이만큼 늘어나도록 */
+    padding-bottom: 56px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+}
+.about-photo {
+    width: 160px;                  /* 가로도 살짝 키워 균형 유지 */
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #1a1a1a;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+.about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.about-intro { flex: 1; min-width: 0; }
+.about-label {
+    color: #4ade80 !important;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 16px;
+    letter-spacing: 0.3px;
+}
+.about-name {
+    margin: 26px 0 18px;
+    font-size: 28px;
+    font-weight: 700;
+    font-family: sans-serif;
+}
+.about-name-en {
+    margin-left: 14px;
+    font-size: 16px;
+    color: #cfd8dc !important;
+    font-weight: 500;
+}
+.about-tagline {
+    margin: 0 0 18px;
+    font-size: 11px;
+    line-height: 1.7;
+    white-space: nowrap;
+}
+.about-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+.about-tag {
+    padding: 5px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: #fff !important;
+    border-radius: 6px;
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.08);
+}
+.about-notion {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff !important;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+.about-notion:hover { background: rgba(255, 255, 255, 0.18); }
+
+/* Activities / Awards / Certificates 그리드 */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 48px;
+}
+.about-col { min-width: 0; }
+.about-section-title {
+    margin: 0 0 8px;
+    color: #93c5fd !important;
+    font-size: 17px;
+    font-weight: 700;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.3px;
+}
+.about-col .about-section-title + .about-list + .about-section-title {
+    margin-top: 36px;
+}
+.about-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.about-list li {
+    padding: 12px 2px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    gap: 8px;
+}
+.about-list li:last-child { border-bottom: none; }
+.about-list .about-empty {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-style: italic;
+}
+
+/* 배지 : 숲/블루-그린 테마에 어울리는 색상 */
+.about-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    background: rgba(74, 222, 128, 0.18);
+    color: #6ee7b7 !important;
+    border: 1px solid rgba(74, 222, 128, 0.55);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-shadow: none !important;
+}
+.about-badge-bronze {
+    background: rgba(74, 222, 128, 0.18);
+    color: #6ee7b7 !important;
+    border-color: rgba(74, 222, 128, 0.55);
+}
+
+/* =========================
+   Tools & Stacks (About 하단)
+========================= */
+.about-tools {
+    margin-top: 48px;
+}
+.tools-title {
+    color: #fff !important;
+    margin-bottom: 6px !important;
+}
+.tools-subtitle {
+    margin: 0 0 28px;
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 13px;
+}
+.tools-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 60px;
+}
+.tools-col { min-width: 0; }
+.tools-category {
+    margin: 0 0 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    color: #93c5fd !important;     /* About 페이지 섹션 제목과 동일한 블루 톤 */
+    font-size: 15px;
+    font-weight: 700;
+}
+.tools-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.tools-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 2px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.tools-list li:last-child { border-bottom: none; }
+.tool-name {
+    flex: 1;
+    min-width: 0;
+}
+.tool-level {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    width: 200px;
+    flex-shrink: 0;
+}
+.bar-track {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.18);
+    overflow: hidden;
+}
+.bar-fill {
+    display: block;
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #60a5fa, #3b82f6);
+    transition: width 0.5s ease;
+}
+.bar-pct {
+    min-width: 38px;
+    text-align: right;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85) !important;
+    text-shadow: none !important;
+}
+
+/* Tools 반응형 */
+@media (max-width: 900px) {
+    .tools-grid { grid-template-columns: 1fr; gap: 24px; }
+}
+@media (max-width: 640px) {
+    .about-tools { margin-top: 32px; }
+    .tools-subtitle { font-size: 12px; }
+    .tools-list li { font-size: 12px; padding: 8px 2px; }
+    .tool-level { width: 150px; gap: 8px; }
+    .bar-track { height: 5px; }
+    .bar-pct { font-size: 11px; min-width: 32px; }
+}
+
+/* =========================
+   About 반응형
+========================= */
+/* 큰 화면 ~ 중간 (≤1100px) : 태그라인이 줄넘김 가능하도록 풀어줌 */
+@media (max-width: 1100px) {
+    .about-view { padding: 18px 20px 32px; }
+    .about-whoami { gap: 28px; }
+    .about-tagline {
+        white-space: normal;       /* 줄넘김 허용 */
+        word-break: keep-all;       /* 단어 단위로만 줄넘김 */
+    }
+    .about-list li {
+        white-space: normal;
+        word-break: keep-all;
+        flex-wrap: wrap;
+    }
+    .about-grid { gap: 32px; }
+}
+
+/* 태블릿 (≤900px) : 그리드를 1컬럼으로 */
+@media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; gap: 24px; }
+    .about-col .about-section-title + .about-list + .about-section-title {
+        margin-top: 24px;
+    }
+}
+
+/* 모바일 (≤640px) : 프로필 세로 정렬 + 사진 크기 축소 */
+@media (max-width: 640px) {
+    .about-view { padding: 14px 16px 24px; }
+    .about-whoami {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding-bottom: 24px;
+    }
+    .about-photo {
+        width: 100px;
+        height: 100px;
+        align-self: flex-start;   /* stretch 해제 (세로 정렬에선 불필요) */
+    }
+    .about-name { margin-top: 0; font-size: 24px; }
+    .about-name-en { font-size: 14px; }
+    .about-tagline { font-size: 12px; }
+    .about-tag { font-size: 12px; padding: 4px 12px; }
+    .about-section-title { font-size: 15px; }
+    .about-list li { font-size: 12px; }
+}
+
+/* =========================
+   메뉴 정보 패널 (Work / About / Contact)
+   카드 없이 화면 중앙에 내용 출력
+========================= */
+.info-panel {
+    width: 100%;
+    max-width: 1500px;
+    text-align: center;
+    padding: 20px;
+    animation: detail-in 0.35s ease;
+}
+.info-panel p {
+    margin: 10px 0;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+/* 연도별 프로젝트 카드 그리드 (다크 카드 스타일) — 가로 2개씩 */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 4px;
+    text-align: left;
+}
+.project-card {
+    background: rgba(0, 0, 0, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    overflow: hidden;
+    color: #fff;
+    font-family: 'Nanum Gothic Coding', 'Courier New', monospace;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.project-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(147, 197, 253, 0.5);
+}
+.project-card .card-image {
+    width: 100%;
+    aspect-ratio: 16 / 10;     /* 더마렌즈 사진 비율 (1440 x 900) */
+    overflow: hidden;
+    background: #111;
+}
+.project-card .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;         /* 모든 사진을 16:10 박스에 꽉 채워 표시 (더마렌즈와 동일한 모양) */
+    object-position: center;
+    display: block;
+}
+.project-card .card-body { padding: 16px 20px 18px; }
+.project-card .card-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.project-card .card-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+}
+.project-card .card-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.project-card .card-status::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+.project-card .card-status.done {
+    color: #6ee7b7;
+    border: 1px solid rgba(110, 231, 183, 0.5);
+    background: rgba(110, 231, 183, 0.08);
+}
+.project-card .card-status.ongoing {
+    color: #93c5fd;
+    border: 1px solid rgba(147, 197, 253, 0.5);
+    background: rgba(147, 197, 253, 0.08);
+}
+.project-card .card-desc {
+    margin: 0 0 12px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+}
+.project-card .card-role {
+    margin: 0 0 12px;
+    font-size: 12px;
+    color: #fff;
+}
+.project-card .card-role .label {
+    color: #93c5fd;
+    margin-right: 3px;
+    font-weight: 700;
+}
+.project-card .card-stack {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.project-card .card-tag {
+    padding: 3px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 6px;
+    font-size: 11px;
+    color: #6ee7b7;
+}
+
+@media (max-width: 720px) {
+    .project-grid { grid-template-columns: 1fr; gap: 18px; max-width: 420px; }
+    .project-card .card-body { padding: 14px 16px 16px; }
+}
+
+.work-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+}
+/* 사진 + 설명을 하나의 카드로 묶음 */
+.work-gallery figure {
+    margin: 0;
+    width: 300px;
+    box-sizing: border-box;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+.work-gallery img {
+    /* 모든 연도/항목 이미지를 동일 규격으로 표시 */
+    width: 100%;
+    height: 380px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+.work-gallery figcaption {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+    color: #333;
+}
+
+/* 초기화면 복귀 버튼 */
+.back-btn {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 9px 22px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    background: #000;
+    border: none;
+    border-radius: 28px;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+.back-btn:hover {
+    transform: translateY(-2px);
+    background: #222;
+}
+
+/* =========================
+   푸터 : 최하단, 가로 전체 채움
+========================= */
+.site-footer {
+    /* panel 외부의 body 직속 자식 → 자연스럽게 viewport 좌우 끝까지 */
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+}
+.site-footer p { margin: 2px 0; line-height: 1.6; }
+.footer-left { text-align: left; }
+.footer-name {
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.footer-arrow { color: #6f9bb3; font-weight: 700; }
+.footer-copy {
+    font-size: 11px;
+    opacity: 0.6;
+}
+.footer-right {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.footer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+.footer-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+.footer-btn svg { width: 16px; height: 16px; }
+
+/* Footer 반응형 */
+@media (max-width: 720px) {
+    .site-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 14px 20px;
+    }
+    .footer-right {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .footer-btn { padding: 7px 14px; font-size: 12px; }
+}
+@media (max-width: 420px) {
+    .footer-name { font-size: 13px; }
+    .footer-copy { font-size: 10px; }
+    .footer-btn { padding: 6px 12px; font-size: 11px; }
+    .footer-btn svg { width: 14px; height: 14px; }
+}
+
+/* =========================
+   LP판 위 제목
+========================= */
+.stage-title {
+    margin: 20px 0 -10px;
+    text-align: center;
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* =========================
+   LP판 무대
+========================= */
+.stage {
+    position: relative;
+    width: 340px;
+    height: 340px;
+    flex-shrink: 0;
+}
+
+/* 턴테이블 (LP + 톤암) : 무대 정중앙에 배치 + 축소 */
+.turntable {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 420px;
+    height: 420px;
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+/* LP 레코드판 */
+.vinyl {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: 50%;
+    background:
+        repeating-radial-gradient(
+            circle at center,
+            #0d0d0d 0 2px,
+            #1c1c1c 2px 5px
+        );
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 정지 상태에서도 부드럽게 멈추도록 */
+    animation: spin 3s linear infinite;
+    animation-play-state: paused;
+}
+.vinyl.spinning {
+    animation-play-state: running;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* 회전할 때 도는 광택 (홈에 빛이 스치는 느낌) */
+.vinyl-shine {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg,
+        rgba(255, 255, 255, 0) 0deg,
+        rgba(255, 255, 255, 0.18) 40deg,
+        rgba(255, 255, 255, 0) 90deg,
+        rgba(255, 255, 255, 0) 180deg,
+        rgba(255, 255, 255, 0.12) 220deg,
+        rgba(255, 255, 255, 0) 270deg
+    );
+    pointer-events: none;
+}
+
+.vinyl-label {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff 0 40%, var(--blue-soft) 41% 100%);
+}
+.vinyl-hole {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #2a2a2a;
+}
+
+/* =========================
+   톤암 (바늘 팔)
+========================= */
+.tonearm {
+    position: absolute;
+    top: 6px;
+    right: 54px;
+    width: 60px;
+    height: 60px;
+    z-index: 3;
+    transform-origin: 78% 22%;
+    transform: rotate(-28deg);
+    transition: transform 0.8s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+/* 재생 시 암이 판 위로 내려옴 */
+.tonearm.down {
+    transform: rotate(8deg);
+}
+
+/* 암 받침 (피벗) */
+.tonearm-base {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #d7dee3, #9aa6ad);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* 암 막대 */
+.tonearm-rod {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 6px;
+    height: 150px;
+    background: linear-gradient(90deg, #c2cace, #eef2f4 50%, #aab4ba);
+    border-radius: 4px;
+    transform-origin: top center;
+    transform: rotate(34deg);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 카트리지 헤드 (바늘 끝) */
+.tonearm-head {
+    position: absolute;
+    top: 138px;
+    right: -38px;
+    width: 22px;
+    height: 30px;
+    background: linear-gradient(180deg, #e9edf0, #9aa6ad);
+    border-radius: 4px;
+    transform: rotate(34deg);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================
+   LP판 위 연도 라벨 (시계방향)
+========================= */
+.year {
+    position: absolute;
+    z-index: 5;
+    background: none;
+    border: none;
+    padding: 4px 6px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    /* 좌표 기준 중앙 정렬 */
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+.year:hover { color: var(--blue-soft); transform: translate(-50%, -50%) scale(1.18); }
+.year.active { color: var(--blue); transform: translate(-50%, -50%) scale(1.18); }
+
+/* LP 원형 왼쪽 호를 따라 위→아래 배치 (턴테이블 420×420 기준) */
+.year-2023 { left: 97px; top: 97px; }
+.year-2024 { left: 56px; top: 169px; }
+.year-2025 { left: 56px; top: 251px; }
+.year-2026 { left: 97px; top: 323px; }
+
+/* =========================
+   연도 상세 패널
+========================= */
+.year-detail {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    padding: 20px;
+    animation: detail-in 0.35s ease;
+}
+.year-detail p {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+@keyframes detail-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.year-detail h3 {
+    margin: 0 0 18px;
+    font-size: 26px;
+    font-weight: 700;
+    color: #222;
+}
+.year-detail ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.year-detail li {
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.6;
+    color: var(--ink);
+}
+.year-detail li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--blue);
+}
+.year-detail li strong {
+    color: var(--blue-deep);
+    font-size: 16px;
+}
+.year-detail li span {
+    display: block;
+    font-size: 14px;
+    color: #6b7785;
+}
+
+/* =========================
+   반응형
+========================= */
+@media (max-width: 900px) {
+    .panel {
+        min-height: auto;
+        padding: 40px 28px 60px;
+    }
+    .site-header {
+        margin: 28px -28px 0;
+        padding: 32px 20px;
+    }
+    .stage { width: 280px; height: 280px; }
+    .turntable { transform: translate(-50%, -50%) scale(0.66); }
+}
