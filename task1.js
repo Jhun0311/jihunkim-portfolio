@@ -378,3 +378,12 @@ if (logoBtn) {
         resetYear();
     });
 }
+
+// Works 클릭 시 메인 LP/Works 화면으로 복귀
+const navWorks = document.getElementById('navWorks');
+if (navWorks) {
+    navWorks.addEventListener('click', () => {
+        resetView();
+        resetYear();
+    });
+}
